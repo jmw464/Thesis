@@ -4,7 +4,9 @@ In order to talk about my thesis work it will be necessary to dive into some of 
 background motivating my results. Particle physics is a study of the fundamental building blocks
 of the universe and is vast in its nature. I will try to elucidate some of the more pertinent points here. 
 I will begin with a brief tour through the Standard Model (SM) followed by a more detailed explanation
-the Higgs mechanism and electroweak symmetry breaking.
+the Higgs mechanism and electroweak symmetry breaking. This section was structurally inspired by the 
+material in Modern Particle Physics by Mark Thomson, which served as a steady guide for me throughout 
+my journey in graduate school.
 
 \section{Fundamentals of the Standard Model}
 
@@ -271,9 +273,96 @@ in mind, but each only contain kinematic and interaction terms between fermions 
 the existence of particle masses we need to introduce self-interaction terms for all massive particles, which are of the 
 form $\frac{1}{2}m_V^2V_{\mu}V^{\mu}$ for bosons and $m_f\bar{f}f = m_f(\bar{f}_Rf_L + \bar{f}_Lf_R)$ for 
 fermions. All of these additional terms are fundamentally incompatible with the prescribed symmetries of the Standard 
-Model since they are not invariant under $SU(2)_L \times U(1)_Y$ transformations.
+Model since they are not invariant under $SU(2)_L \times U(1)_Y$ transformations. This means that without further 
+modifications, the Standard Model is incompatible with the existence of massive particles, which is (of course) 
+empirically hard to justify given our understanding of the physical universe. Fixing this requires the introduction of a 
+scalar boson (the Higgs) and the breaking of our $SU(2)_L \times U(1)_Y$ symmetry, which will be discussed in the 
+following sections.
 
-\subsection{Electroweak Symmetry Breaking}
+\subsection{Scalar fields and symmetry breaking}
+
+The origin of particle mass terms in the Lagrangian of the Standard Model lies in a process known as spontaneous 
+symmetry breaking which occurs in the electroweak sector of our theory. The backbone of this is the introduction of 
+a new complex scalar field $\phi$ (which we will identify as the Higgs field) with a Lagrangian of the form 
+$(D_{\mu}\phi)^*(D^{\mu}\phi) - V(\phi)$ where $V(\phi) = \mu^2\phi^2 + \lambda\phi^4$ is the Higgs potential 
+and $D_{\mu}$ represents the covariant derivative (which enforces gauge invariance as in the QED and QCD 
+Lagrangians). For a single complex scalar field $\phi = \frac{1}{\sqrt{2}}(\phi_1 + i\phi_2)$ the potential expands to
+\begin{equation}
+V(\phi) = \frac{1}{2}\mu^2(\phi_1^2 + \phi_2^2) - \frac{1}{4}\lambda(\phi_1^2 + \phi_2^2)^2
+\end{equation}
+where we require $\lambda > 0$ to ensure the potential has a finite minimum. The choice of $\mu$ then determines 
+the shape of the potential, with $\mu^2 > 0$ leading to a minimum at 0 and $\mu^2 < 0$ to a set of minima defined 
+by $\phi_1^2 + \phi_2^2 = -\frac{\mu^2}{\lambda}$, as shown in Figure \ref{fig:Higgs_Potential}. 
+
+\begin{figure}
+\centering
+    \includegraphics[width=1.0\textwidth]{images/Higgs_Potential.png}
+    \caption{Visual representation of the Higgs potential (with $\lambda = 2$) for positive $\mu^2 = 10$ (left) and 
+    negative $\mu^2 = -10$ (right).}
+    \label{fig:Higgs Potential}
+\end{figure}
+
+In the case where $\mu^2 < 0$, this potential requires a physical choice for the minimum (vacuum) state which 
+explicitly breaks the rotational symmetry in the $(\phi_1, \phi_2)$ plane. The minimum energy of the system, also 
+known as the vacuum expectation value (or VEV), is at $v = \sqrt{\frac{-\mu^2}{\lambda}}$ for such a theory. \par
+
+In the Standard Model we require the scalar field to be a complex $SU(2)$ doublet
+\begin{equation}
+\phi = 
+\begin{pmatrix} \phi^+  \\ \phi^0 \end{pmatrix}
+= \frac{1}{\sqrt{2}}
+\begin{pmatrix} \phi_1 + i\phi_2 \\ \phi_3 + i\phi_4 \end{pmatrix}
+\end{equation}
+which given $\mu^2 < 0$ has an infinite number of minima where $\phi^\dagger\phi = \frac{v^2}{2}$. For physical 
+reasons related to the absence of photon mass, the vacuum expectation value is only non-zero for the $\phi^0$ 
+component of the doublet, such that we can expand the field around this minimum as
+\begin{equation}
+\phi(x) = \frac{1}{\sqrt{2}}
+\begin{pmatrix} 0 \\ v + h(x) \end{pmatrix}
+\end{equation}
+This field description is in unitary gague where $h(x)$ directly represents the physical Higgs field. An equivalent, 
+but more general description of this expansion around the VEV can be done by including an additional perturbing 
+field around the minimum of $\phi^+$ and then removing non-physical fields via gauge transformation afterwards. 
+In the end, the symmetry breaking of this new scalar potential immediately results in the introduction of weak
+boson mass terms in the Lagrangian as well as an entirely new particle: the Higgs boson.
+
+\subsection{Particle masses and Higgs interactions}
+
+The origin of weak boson masses can be seen directly if we expand the kinetic term of the scalar field 
+Lagrangian around the VEV as
+\begin{equation}
+\begin{aligned}
+(D_{\mu}\phi)^{\dagger}(D^{\mu}\phi) =& \frac{1}{2}(\partial_{\mu}h)(\partial^{\mu}h) + 
+\frac{1}{8}g_W^2(W_{\mu}^{(1)} + iW_{\mu}^{(2)})(W^{(1)\mu} - iW^{(2)\mu}(v+h)^2 + \\
+&\frac{1}{8}(g_WW_{\mu}^{(3)} - g'B_{\mu})(g_WW^{(3)\mu} - g'B^{\mu})(v+h)^2 \\
+=&\frac{1}{2}(\partial_{\mu}h)(\partial^{\mu}h) + \frac{1}{4}g_W^2W_{\mu}^-W^{+\mu}(v+h)^2 + 
+\frac{1}{4}(g_W^2+g'^2)Z_{\mu}Z^{\mu}(v+h)^2
+\end{aligned}
+\end{equation}
+where we have written the physical particles as combinations of the underlying fields 
+$W^{\pm} = \frac{1}{\sqrt{2}}(W^{(1)} \mp iW^{(2)})$ and 
+$Z = (g^2_W + g'^2)^{-\frac{1}{2}}(g_WW^{(3)} - g'B)$. In this expression,  the $v^2$ terms represent 
+the weak boson masses (i.e. self-interaction terms) while $vh$ and $h^2$ terms describe the couplings 
+(i.e. interaction strengths) between two weak bosons and one or two Higgs bosons respectively. The masses 
+can be read directly from the Lagrangian as $m_W = \frac{1}{2}g_Wv$ and 
+$m_Z = \frac{1}{2}v\sqrt{g^2_W + g'^2}$. As expected, there is no mass term for the photon, which means 
+it does not interact with the Higgs boson. Requiring orthogonality to the $Z$, we can see that the photon is 
+represented as $A = (g^2_W + g'^2)^{-\frac{1}{2}}(g'W^{(3)} + g_WB)$. Repeating the above expansion 
+with the potential term of the scalar field Lagrangian results in 
+\begin{equation}
+V(\phi) = \frac{1}{2}\mu^2(v+h)^2 + \frac{1}{4}\lambda(v+h)^4 = 
+\lambda v^2h^2 + \lambda vh^3 + \frac{1}{4}\lambda h^4 - \frac{1}{4}\lambda v^4
+\end{equation}
+where $h^2$ terms define the Higgs mass $m_H = \sqrt{2\lambda}v$ and $h^3$ and $h^4$ terms the 
+self-couplings between 3 and 4 Higgs bosons respectively. \par
+
+These new additions to the Standard Model Lagrangian bring out the missing mass terms for weak bosons 
+via the introduction of a massive scalar boson: the Higgs. Fermions on the other hand, are still unaccounted 
+for.Thankfully, the Higgs field allows for the introduction of gauge invariant fermion mass terms which 
+complete the picture. In particular these take the form of 
+$-g_f(\bar{\psi_L}\phi\psi_R + \bar{\psi_R}\phi^{\dagger}\psi_L$ and 
+$g_f(\bar{\psi_L}\phi_C\psi_R + \bar{\psi_R}\phi_C^{\dagger}\psi_L$, which satisfy the 
+$SU(2)_L \times U(1)_Y$ symmetry of the Standard Model.
 
 \section{Why the Higgs is interesting}
 
