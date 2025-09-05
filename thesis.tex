@@ -5,7 +5,6 @@
 % The Current Maintainer of this work is Paul Vojta.
 
 \documentclass{ucbthesis}
-\usepackage{biblatex}
 \usepackage{rotating} % provides sidewaystable and sidewaysfigure
 \usepackage{slashed}
 \usepackage{amsmath}
@@ -29,7 +28,7 @@
 
 \newtheorem{theorem}{Jibberish}
 
-\bibliography{references}
+\bibliographystyle{plain}
 
 \hyphenation{mar-gin-al-ia}
 \hyphenation{bra-va-do}
@@ -96,11 +95,10 @@ ACKNOWLEDGEMENTS HERE
 \pagestyle{headings}
 
 % (Optional) \part{First Part}
-
 \include{chap1}
 \include{chap2}
-
-\printbibliography
+% Print bibliography after all chapters and outside frontmatter
+\bibliography{references}
 
 % \appendix
 % \chapter{More Monticello Candidates}
