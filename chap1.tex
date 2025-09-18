@@ -88,14 +88,18 @@ via a parity transformation. This particular decomposition is important because 
 and right-handed spinors) are treated differently within some SM interactions (leading to violation of 
 parity-symmetry). Each chiral spinor has a spin-up and a spin-down component. In the free particle case, a 
 fermion field satisfies the Dirac equation 
+
 \begin{equation}
 (i\slashed{\partial} - m)\psi = 0
 \end{equation}
+
 where $\slashed{\partial} = (i\gamma^{\mu}\partial_{\mu} - m)$. Given $\bar{\psi} = \psi^{\dag}\gamma_0$, 
 the free particle Lagrangian then consists simply of a kinetic term and a mass term
+
 \begin{equation}
 \mathcal{L} = i\bar{\psi}\gamma^{\mu}\partial_{\mu}\psi - m\bar{\psi}\psi
 \end{equation}
+
 This simple picture is complicated significantly by the presence of boson fields, which are responsible for 
 introducing particle interactions described by Quantum Electrodynamics (QED), Quantum Chromodynamics 
 (QCD), electroweak theory and the Higgs mechanism. Each of these aspects of the SM comes out of a particular 
@@ -108,9 +112,11 @@ Quantum electrodynamics (QED) is the quantum description of electrodynamics, whi
 components of classical physics and describes electricity and magnetism via the electromagnetic force. The 
 quantum theory that leads to these classical phenomena postulates that the SM Lagrangian is invariant under a 
 $U(1)$ local phase transformation of the form 
+
 \begin{equation}
 \psi(x) \rightarrow \psi'(x) = e^{iq\chi(x)}\psi(x)
 \end{equation}
+
 This symmetry is enforced with the introduction of the covariant derivative $D_{\mu} = \partial_{\mu} + iqA_{mu}$, 
 where $A_{\mu} \rightarrow A_{\mu}' = A_{\mu} + \partial_{\mu}\chi(x)$. The Dirac Lagrangian is thus left invariant 
 under the $U(1)$ transformation with the introduction of a new field $A_{\mu}$, which is coupled via the electric 
@@ -118,10 +124,12 @@ charge $q$ (and represents the photon). The choice of $\chi(x)$ is arbitrary and
 different gauges. This allows for some redundancy in the field description of electrodynamics, which is familiar from 
 the classical theory. In practice the $U(1)$ symmetry manifests via the exchange of photons between charged 
 particles, described in full by the QED Lagrangian
+
 \begin{equation}
 \mathcal{L}_{QED} = - \frac{1}{4}F_{\mu\nu}F^{\mu\nu} + i\bar{\psi}\gamma^{\mu}D_{\mu}\psi - m\bar{\psi}\psi =
 - \frac{1}{4}F_{\mu\nu}F^{\mu\nu} + i\bar{\psi}\gamma^{\mu}\partial_{\mu}\psi - q\bar{\psi}\gamma^{\mu}A_{\mu}\psi - m\bar{\psi}\psi
 \end{equation}
+
 Here $F_{\mu\nu} = \partial_{\mu}A_{\nu}  - \partial_{\nu}A_{\mu}$ is just the field strength tensor that represents 
 the kinetic term of the photon, which describes the propagation of electromagnetic fields. The covariant derivative 
 brings out both the standard kinetic term for fermions, as well as a fermion-photon interaction term which is only 
@@ -133,9 +141,11 @@ From the comparatively simple symmetry underlying QED we can now move towards of
 of the more complicated theory of Quantum Chromodynamics (or QCD), which aims to explain the strong nuclear 
 interaction. QCD has no classical counterpart but is structurally similar to QED through its definition by a local 
 gauge symmetry. For QCD this is a $SU(3)$ symmetry enforcing invariance under transformations of the form
+
 \begin{equation}
 \psi(x) \rightarrow \psi'(x) = exp[ig_{S} \boldsymbol{\alpha}(x) \cdot \boldsymbol{\hat{T}}] \psi(x)
 \end{equation}
+
 Here $\boldsymbol{\hat{T}} =  \{T^a\}$ are the 8 generators of the $SU(3)$ group and $\boldsymbol{\alpha}(x)$ is 
 a set of 8 arbitrary functions. Each generator of $SU(3)$ is represented by a 3x3 matrix, requiring the addition of 
 three extra degrees of freedom to the description of the fermionic wavefunction $\psi(x)$.  The orthogonal states in 
@@ -144,11 +154,13 @@ while antiquarks carry an anticolor charge and the combination of a matching col
 anti-blue) is colorless.  Strong interactions occur via the exchange of gluons, which carry one color and one anticolor 
 charge. There are 8 gluons total, corresponding to the 8 generators of $SU(3)$. The analogy between QCD and QED can 
 be seen directly in the QCD Lagrangian
+
 \begin{equation}
 \mathcal{L}_{QED} = 
 %- \frac{1}{4}G^a_{\mu\nu}G^{\mu\nu}_a + i\bar{\psi_i}\gamma^{\mu}(D_{\mu})_{ij}\psi_j - m\bar{\psi_i}\delta_{ij}\psi_j =
 - \frac{1}{4}G^a_{\mu\nu}G^{\mu\nu}_a + i\bar{\psi_i}\gamma^{\mu}\partial_{\mu}\delta_{ij}\psi_j +g\bar{\psi_i}\gamma^{\mu}(T_a)_{ij}\mathcal{A}^a_{\mu}\psi_j  - m\bar{\psi_i}\delta_{ij}\psi_j
 \end{equation}
+
 Here, the gluon exchange term, which contains the gluon fields $\mathcal{A}^a_{\mu}$, is the only term that can mix 
 different color components of the wavefunction $\psi$. The gluon field strength tensor 
 $G^a_{\mu\nu} = \partial_{\mu}\mathcal{A}^a_{\nu} - \partial_{\nu}\mathcal{A}^a_{\mu} + 
@@ -200,9 +212,11 @@ so in practice.\par
 Putting this interaction into the language of fundamental symmetries, it is associated with an invariance under 
 local $SU(2)$ phase transformations for left-handed particles (and right-handed anti-particles) only. This is 
 denoted $SU(2)_L$ and takes the form 
+
 \begin{equation}
 \psi(x) \rightarrow \psi'(x) = exp[ig_{W} \boldsymbol{\alpha}(x) \cdot \boldsymbol{\hat{T}}] \psi(x)
 \end{equation}
+
 where here $\boldsymbol{\hat{T}} = \frac{1}{2}\boldsymbol{\sigma}$ are the three generators of the SU(2) 
 group (i.e. the Pauli spin matrices). The new interaction terms in the Lagrangian that come from this symmetry are 
 just $ig_W\frac{1}{2}\sigma_k\gamma^{\mu}W_{mu}^k\psi_L$ and the physical $W^{\pm}$ bosons are linear 
@@ -213,10 +227,12 @@ $\psi_L$ must consist of two components making up a doublet (analogous to the co
 states of this doublet represent different physical particles separated by one unit of charge. They are connected 
 via the conservation of weak isospin $I_3$ and the exchange of a $W^{\pm}$ boson allows the system to 
 transition between these two states. This means that left-handed particles are represented as
+
 \begin{equation}
 \begin{pmatrix} \nu_{l} \\ l^- \end{pmatrix}_L, 
 \begin{pmatrix} u \\ d' \end{pmatrix}_L
 \end{equation}
+
 while right-handed particles are placed in $SU(2)_L$ invariant weak isospin singlets, thereby linking left-handed 
 neutrinos and charged leptons as well as up-type and down-type quarks via the charged current weak interaction.  
 The $d'$ in the above description does not represent a pure down quark state but rather a combination of down-type 
@@ -240,11 +256,13 @@ This observation also extended to different kinds of hadronic interactions, lead
 hypothesis which states that the mass eigenstates of quarks are not equal to their weak eigenstates. A universal 
 coupling therefore exists when considering the weak eigenstates $q'$, which are related to the mass eigenstates $q$ 
 via the CKM matrix \cite{cabibbo-ckm-matrix, kobayashi-ckm-matrix}
+
 \begin{equation}
 \begin{pmatrix} d'  \\ s' \\ b' \end{pmatrix} =
 \begin{pmatrix} V_{ud} & V_{us} & V_{ub} \\ V_{cd} & V_{cs} & V_{cb} \\ V_{td} & V_{ts} & V_{tb} \end{pmatrix}
 \begin{pmatrix} d \\ s \\ b \end{pmatrix}
 \end{equation}
+
 The nine elements of this matrix can be parametrized via three rotation angles and a complex phase because of 
 unitarity conditions. The misalignment of quark eigenstates leads to observable instances of CP violation in weak 
 interactions involving quarks, which is one of the main known sources of CP violation within the SM. The 
@@ -269,12 +287,15 @@ $U(1)$ symmetry cannot couple to electric charge as discussed earlier, but rathe
 hypercharge $Y$. The resulting interaction term $g'\frac{Y}{2}\gamma^{\mu}B_{\mu}\psi$ is analogous to QED with 
 an altered coupling and replacement of the photon field $A_{\mu}$ by $B_{\mu}$. The actual photon and Z boson 
 fields
+
 \begin{equation}
 A_{\mu} = B_{\mu}cos\theta_W + W^{(3)}_{\mu}sin\theta_W
 \end{equation}
+
 \begin{equation}
 Z_{\mu} = -B_{\mu}sin\theta_W+W^{(3)}_{\mu}cos\theta_W
 \end{equation}
+
 are then taken to be linear combinations of the $U(1)_Y$ field and the neutral $SU(2)_L$ field with the weak mixing 
 angle $\theta_W$ characterizing the strength of the mixing. The electron charge is related to the $U(1)_Y$ and 
 $SU(2)_L$ couplings as well as the mixing angle by $e = g_Wsin\theta_W = g'cos\theta_W$. Putting all of this 
@@ -298,7 +319,7 @@ empirically hard to justify given our understanding of the physical universe. Re
 a scalar particle (the Higgs boson) and the breaking of the $SU(2)_L \times U(1)_Y$ symmetry, which will be 
 discussed in the following sections.
 
-\subsection{Scalar fields and symmetry breaking}
+\subsection{Scalar Fields and Symmetry Breaking}
 
 The origin of particle mass terms in the Lagrangian of the Standard Model lies in a process known as spontaneous 
 symmetry breaking \cite{higgs-broken-symmetries, englert-broken-symmetries} which occurs in the electroweak 
@@ -307,9 +328,11 @@ identify as the Higgs field) with a Lagrangian of the form $(D_{\mu}\phi)^*(D^{\
 $V(\phi) = \mu^2\phi^2 + \lambda\phi^4$ is the Higgs potential and $D_{\mu}$ represents the covariant 
 derivative \footnote{The coraviant derivative enforces gauge invariance as in the QED and QCD Lagrangians}. For 
 a single complex scalar field $\phi = \frac{1}{\sqrt{2}}(\phi_1 + i\phi_2)$ the potential expands to
+
 \begin{equation}
 V(\phi) = \frac{1}{2}\mu^2(\phi_1^2 + \phi_2^2) - \frac{1}{4}\lambda(\phi_1^2 + \phi_2^2)^2
 \end{equation}
+
 where we require $\lambda > 0$ to ensure the potential has a finite minimum. The choice of $\mu$ then determines 
 the shape of the potential, with $\mu^2 > 0$ leading to a minimum at 0 and $\mu^2 < 0$ to a set of minima defined 
 by $\phi_1^2 + \phi_2^2 = -\frac{\mu^2}{\lambda}$, as shown in figure \ref{fig:Higgs_Potential}. 
@@ -327,38 +350,43 @@ explicitly breaks the rotational symmetry in the $(\phi_1, \phi_2)$ plane. The m
 known as the vacuum expectation value (or VEV), is at $v = \sqrt{\frac{-\mu^2}{\lambda}}$ for such a theory. \par
 
 In the Standard Model we require the scalar field to be a complex $SU(2)$ doublet
+
 \begin{equation}
 \phi = 
 \begin{pmatrix} \phi^+  \\ \phi^0 \end{pmatrix}
 = \frac{1}{\sqrt{2}}
 \begin{pmatrix} \phi_1 + i\phi_2 \\ \phi_3 + i\phi_4 \end{pmatrix}
 \end{equation}
+
 which given $\mu^2 < 0$ has an infinite number of minima where $\phi^\dagger\phi = \frac{v^2}{2}$. For physical 
 reasons related to the absence of photon mass, the vacuum expectation value is only non-zero for the $\phi^0$ 
 component of the doublet, such that we can expand the field around this minimum as
+
 \begin{equation}
 \phi(x) = \frac{1}{\sqrt{2}}
 \begin{pmatrix} 0 \\ v + h(x) \end{pmatrix}
 \end{equation}
+
 This field description is in unitary gague where $h(x)$ directly represents the physical Higgs field. An equivalent, 
 but more general description of this expansion around the VEV can be done by including an additional perturbing 
 field around the minimum of $\phi^+$ and then removing non-physical fields via gauge transformation afterwards. 
 In the end, the symmetry breaking of this new scalar potential immediately results in the introduction of weak
 boson mass terms in the Lagrangian as well as an entirely new particle: the Higgs boson.
 
-\subsection{Particle masses and Higgs interactions}
+\subsection{Particle Masses and Higgs Interactions}
 
-The new terms can be seen directly if we expand the kinetic term of the scalar field Lagrangian around the VEV 
-as
+The new terms can be seen directly if we expand the kinetic term of the scalar field Lagrangian around the VEV as
+
 \begin{equation}
 \begin{aligned}
 (D_{\mu}\phi)^{\dagger}(D^{\mu}\phi) =& \frac{1}{2}(\partial_{\mu}h)(\partial^{\mu}h) + 
-\frac{1}{8}g_W^2(W_{\mu}^{(1)} + iW_{\mu}^{(2)})(W^{(1)\mu} - iW^{(2)\mu}(v+h)^2 + \\
+\frac{1}{8}g_W^2(W_{\mu}^{(1)} + iW_{\mu}^{(2)})(W^{(1)\mu} - iW^{(2)\mu})(v+h)^2 + \\
 &\frac{1}{8}(g_WW_{\mu}^{(3)} - g'B_{\mu})(g_WW^{(3)\mu} - g'B^{\mu})(v+h)^2 \\
 =&\frac{1}{2}(\partial_{\mu}h)(\partial^{\mu}h) + \frac{1}{4}g_W^2W_{\mu}^-W^{+\mu}(v+h)^2 + 
 \frac{1}{4}(g_W^2+g'^2)Z_{\mu}Z^{\mu}(v+h)^2
 \end{aligned}
 \end{equation}
+
 where we have written the physical particles as combinations of the underlying fields 
 $W^{\pm} = \frac{1}{\sqrt{2}}(W^{(1)} \mp iW^{(2)})$ and 
 $Z = (g^2_W + g'^2)^{-\frac{1}{2}}(g_WW^{(3)} - g'B)$. In this expression,  the $v^2$ terms represent 
@@ -369,10 +397,12 @@ $m_Z = \frac{1}{2}v\sqrt{g^2_W + g'^2}$. As expected, there is no mass term for 
 it does not interact with the Higgs boson. Requiring orthogonality to the $Z$, we can see that the photon is 
 represented as $A = (g^2_W + g'^2)^{-\frac{1}{2}}(g'W^{(3)} + g_WB)$. Repeating the above expansion 
 with the potential term of the scalar field Lagrangian results in 
+
 \begin{equation}
 V(\phi) = \frac{1}{2}\mu^2(v+h)^2 + \frac{1}{4}\lambda(v+h)^4 = 
 \lambda v^2h^2 + \lambda vh^3 + \frac{1}{4}\lambda h^4 - \frac{1}{4}\lambda v^4
 \end{equation}
+
 where $h^2$ terms define the Higgs mass $m_H = \sqrt{2\lambda}v$ and $h^3$ and $h^4$ terms the 
 self-couplings between 3 and 4 Higgs bosons respectively. \par
 
@@ -386,10 +416,12 @@ is the conjugate Higgs doublet. Both of these expressions satisfy the $SU(2)_L \
 the Standard Model as required.Since the VEV is only non-zero for the lower component of the scalar 
 $SU(2)$ doublet (i.e. $\phi^0$), the first expression generates the charged lepton and down-type quark 
 terms while the second is responsible for the up-type quarks
+
 \begin{equation}
 \mathcal{L}_f = -\frac{g_f}{\sqrt{2}}v(\bar{f_L}f_R + \bar{f_R}f_L) - 
 \frac{g_f}{\sqrt{2}}h(\bar{f_L}f_R + \bar{f_R}f_L)
 \end{equation}
+
 Aside from neutrinos, which represent a bigger mystery due to their apparent fixed left-handedness, this 
 Lagrangian describes the masses and Higgs interactions of all fermions. The Yukawa coupling 
 $g_f$ determines the coupling strength between a particular fermion and the Higgs and is not fixed by 
@@ -398,7 +430,7 @@ significant impact on the mass generation mechanism of the Standard Model
 \cite{gunion-2hdm, carena-mssm}. These deviations are measurable via changes in interaction rates 
 between the Higgs and different fermions, which constitutes the main focus of my thesis.
 
-\subsection{Why the Higgs is interesting}
+\subsection{Why the Higgs is Interesting}
 
 While the Standard Model is mathematically robust and broadly experimentally tested, there are many open 
 questions about elements of its Lagrangian. It has 19 free parameters that are not fixed by theoretical 
@@ -440,7 +472,7 @@ While the LHC will be discussed in more detail later, the following section is i
 overview of some of the important theoretical aspects of hadron colliders as well as introduce some 
 terminology in preparation.
 
-\subsection{Basics of hadron collisions}
+\subsection{Basics of Hadron Collisions}
 
 The center of mass energy of a beam collider $s = (\Sigma^2_{i=1}E_i)^2 - (\Sigma^2_{i=1}\mathbf{p}_i)^2$ is 
 one of its most important characteristics. In hadron colliders, this does not correspond directly to the collision 
@@ -460,7 +492,7 @@ the event rate. Integrating this quantity over time gives the total integrated L
 measure of the total number of collision events recorded over time that is independent of the specific 
 physical process under consideration.Due to the nature of beam accelerators there are generally multiple 
 collisions happening at any given time of which many are uninteresting. These auxiliary interactions are called 
-"pileup" and need to be filtered out from any interesting "hard scatter" collisions observed. \par
+"pile-up" and need to be filtered out from any interesting "hard scatter" collisions observed. \par
 
 After producing particle collisions, we require a detector to record the signatures contained in the final state.
 In essence, particle detectors are large and elaborate counting devices built to answer the question of how many 
@@ -474,18 +506,20 @@ results in a rather complicated combination of the soft long-range dynamics desc
 the hard scatter parton collision in which we're ultimately interested. Thankfully, the factorization theorem within 
 QCD \cite{collins-qcd-factorization} allows us to separate these two processes since the hard scatter collision 
 can be treated perturbatively, leading to 
+
 \begin{equation}
 d\sigma_{pp \rightarrow X} \sim 
 \Sigma_{a,b} \int dx_{p1} f_{a}(x_{p1}, \mu_F) \int dx_{p2} f_{b}(x_{p2}, \mu_F) d\sigma_{ab \rightarrow X}
 \label{eqn:parton-cross-section}
 \end{equation}
+
 Here $\mu_F$ is a parameter called the factorization scale, corresponding to the energy cutoff where we can 
 perform these perturbative calculations\footnote{The underlying reason for this is the "running" of the QCD 
 coupling, which causes it to become small at high energies (in contrast to QED)}. While the cross sections 
 $\sigma_{ab \rightarrow X}$ can be calculated via QCD, the proton PDFs need to be determined empirically via 
 experiments \cite{bailey-proton-pdfs}.
 
-\subsection{Final states and hadronization}
+\subsection{Final States and Hadronization}
 
 The aforementioned process $pp \rightarrow X$ serves as an umbrella for all of the physics happening at the 
 stage of the hard scatter collision producing a collection of particles denoted $X$. These dynamics are generally 
@@ -509,10 +543,10 @@ sprays of particles originating from a common point, which are called particle j
 in the identification of various event signatures, including Higgs to charm decays and will be discussed in detail 
 in a later section.
 
-\subsection{Monte Carlo simulations}
+\subsection{Monte Carlo Simulations}
 
 Hadron collisions are very high dimensional events due to the immense number of final state particles created 
-in the combination of "hard scatter" collision, pileup and initial- and final state radiation (ISR and FSR)
+in the combination of "hard scatter" collision, pile-up and initial- and final state radiation (ISR and FSR)
 \footnote{ISR and FSR corresponds to low energy QCD and EM radiation happening before or after the "hard scatter" 
 collision respectively}. In order to have a good understanding of their structure in a particle detector based on 
 theoretical expectations, we need to make use of Monte Carlo techniques to generate simulated collision events. 
@@ -531,7 +565,7 @@ add additional parton contributions via ISR and FSR to the "hard scatter" collis
 partons are generated, hadronization algorithms are used to develop the final structure of the primary collision. 
 These algorithms are based on phenomenological models derived from lattice QCD and are not exact. Finally 
 the so called "underlying event" is generated which is not related to the primary collision but is necessary to 
-model pileup. All of the final state particles are passed through a detector simulation to approximate the 
+model pile-up. All of the final state particles are passed through a detector simulation to approximate the 
 expected readout. A graphical summary of this pipeline is given in figure \ref{fig:Monte_Carlo}.
 
 %https://link.springer.com/chapter/10.1007/978-3-030-65380-4_2
@@ -542,7 +576,7 @@ expected readout. A graphical summary of this pipeline is given in figure \ref{f
     \label{fig:Monte_Carlo}
 \end{figure}
 
-\subsection{Higgs production and decay}
+\subsection{Higgs Production and Decay}
 
 Among the many possible products of hadron collisions are Higgs bosons, which are the objects of study of my 
 research. Overall, there are 4 common modes of Higgs production in hadron collisions summarized in figure 
