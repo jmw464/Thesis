@@ -285,7 +285,7 @@ Trigger (L1) and the High Level Trigger (HLT). \par
 
 \begin{figure}
 \centering
-    \includegraphics[width=0.8\textwidth]{images/Trigger_System.png}
+    \includegraphics[width=1.0\textwidth]{images/Trigger_System.png}
     \caption{Diagram showing the core components of the ATLAS Trigger and DAQ from \cite{atlas-run3-setup}.}
     \label{fig:Trigger_System}
 \end{figure}
@@ -368,23 +368,24 @@ Energy deposits in the calorimeter are also grouped (into so called topo-cluster
 algorithm and then split to reflect the presence of multiple particle contributions where applicable\footnote{This 
 happens when deposits are topologically close to each other but contain multiple separable energy peaks}. For many 
 practical applications tracks and calorimeter clusters are matched to each other via an algorithm called "Particle 
-Flow" \cite{atlas-pflow} or a modification thereof. In particular, "Particle Flow" estimates the energy contribution 
+Flow" \cite{atlas-pflow} or a modification thereof. "Particle Flow" is then used to estimate the energy contribution 
 of a charged particle track to a topo-cluster to isolate the neutral contributions. This results in a unified 
-description of neutral and charged particles in the detector defined by a combination of information from tracks and 
-topo-clusters. \par
+description of neutral and charged particles measured in the detector via a combination of information from tracks 
+and topo-clusters. \par
 
-The presence of a significant amount of pile-up interactions (as shown in figure \ref{fig:Luminosity_vs_Pileup}) 
-necessitates identifying tracks from the primary interaction of interest (i.e. the "hard scatter" collision) and 
-separating them from the rest of the event. This is accomplished via primary vertex reconstruction through an 
-algorithm made up of a vertex finding and a vertex fitting component \cite{atlas-vertex-reconstruction}. The 
-process begins by considering all tracks above a minimum $p_T$ threshold and within a certain impact parameter 
-window in order to limit contributions from fake tracks, pile-up and secondary interactions to the position of 
-the primary vertex. A vertex seed is created centered at the beam-spot in the transverse plane and the mode of the 
-z-position of all tracks passing the requirements. This seed is used as the starting point for an iterative $\chi^2$ 
-minimization, which iteratively assigns a weight reflecting compatibility with the current vertex position to each 
-track and then recalculates the vertex position based on this weight. Once this minimization converges, all tracks 
-with a sufficient compatibility to the final vertex position are removed from the pool and the process is repeated. 
-After all vertices are found, the vertex with the largest $\Sigma p_T^2$ is marked as the primary vertex. \par
+The presence of a significant amount of pile-up interactions in each event (as seen in figure 
+\ref{fig:Luminosity_vs_Pileup}) leads to the reconstruction of excess tracks and calorimeter clusters that are not 
+relevant to the interaction of interest. To mitigate the impact of these additional objects, a primary event vertex 
+corresponding to the location of the hard scatter collision is identified via a combination of vertex finding and 
+fitting algorithms \cite{atlas-vertex-reconstruction}. The process begins by considering all tracks above a minimum 
+$p_T$ threshold and within a certain impact parameter window to limit contributions from fake and pile-up tracks. 
+An initial vertex seed is created centered at the beam-spot in the transverse plane and the mode of the z-position 
+of all tracks passing the requirements. This seed is used as the starting point for a $\chi^2$ minimization, which 
+iteratively assigns a weight reflecting compatibility with the current vertex position to each track and then 
+recalculates the vertex position based on this weight. Once this minimization converges, all tracks with a sufficient 
+compatibility to the final vertex position are removed from the pool and the process is repeated. After all vertices 
+are found, the vertex with the largest $\Sigma p_T^2$ is marked as the primary vertex. The position of this primary 
+vertex can be used to remove tracks that likely originate from pile-up interactions. \par
 
 \begin{figure}
 \centering
@@ -394,12 +395,66 @@ After all vertices are found, the vertex with the largest $\Sigma p_T^2$ is mark
     \label{fig:Luminosity_vs_Pileup}
 \end{figure}
 
-\subsection{Photons}
+\subsection{Electrons and Photons}
 
-\subsection{Electrons}
+Electrons ($e^{\pm}$) and photons ($\gamma$) are some of the most easily identifiable fundamental particles 
+observable in the ATLAS detector due to their unique interaction signatures in the EM calorimeter. A dedicated 
+$e^{\pm}/\gamma$ reconstruction chain, which is built on top of track and calorimeter cluster reconstruction, exists to 
+find and isolate these signatures \cite{atlas-electrons-photons-reco}. This chain begins by considering topo-clusters 
+above a minimum energy threshold ($400\ MeV$ in run 2) and with more than 50\% of their energy deposited in the EM 
+calorimeter. Clusters that pass these criteria provide the basis of both electron and photon reconstruction, which 
+proceed somewhat independently. Electrons leave tracks in the inner detector while photons only do so if they undergo 
+$\gamma \rightarrow e^+e^-$ conversion before they enter the calorimeter. As such, different track to cluster matching 
+procedures exist to cover these three cases. \par
+
+Clusters matched to at least one standard particle track in the inner detector with 
+$|\Delta\eta| < 0.05$ and $-0.10 < q*(\phi_{track}-\phi_{cluster}) < 0.05$ are considered electron candidates. If 
+multiple tracks fulfill these criteria, tracks with hits in the pixel detector and a better $\Delta R$ match to the 
+cluster are preferred. Converted photon candidates are identified by matching clusters to conversion vertices, which 
+are built by considering either two tracks with opposite charges or single tracks without hits in the innermost 
+detector layers. In either case, relevant tracks must have signatures in the TRT consistent with electrons and vertex 
+candidates must likely be from a massless particle. In case of multiple matches, two track vertices with hits in the 
+Silicon detectors (pixel or SCT) are preferred. Remaining unmatched topo-clusters are considered unconverted photon 
+candidates. \par
+
+To account for radiation from Bremsstrahlung, a separate cluster matching procedure is performed for all electron and 
+photon candidates, grouping individual topo-clusters into superclusters. Starting from the cluster with the highest 
+transverse energy $E_T$, electron seed clusters are required to have $E_T > 1\ GeV$ and be matched to a track with 
+at least 4 hits in the Silicon detectors. Photon seed clusters have no vertex matching requirement, but must have 
+$E_T > 1.5\ GeV$. Surrounding (satellite) clusters are then associated to the seed cluster if they are within a window 
+of $\Delta\eta\times\Delta\phi =0.075\times0.125$, which is extended to $\Delta\eta\times\Delta\phi =0.125\times0.300$ 
+for electrons in cases where the best matched track of the seed cluster is also the best match for the satellite 
+cluster. For converted photons, clusters where the best matched track belongs to the matched conversion vertex of the 
+seed cluster are also added. Once the superclusters are built, relevant variables related to energy and shower shape 
+are recomputed and the track and conversion vertex matching procedure is repeated. \par
+
+In order to improve the purity of reconstructed electron and photon objects, an identification procedure is applied to 
+all candidates. For electrons, this is intended to distinguish prompt electrons from hadronic objects, converted photons 
+and electrons originating from secondary decays. A likelihood discriminant based on variables describing the properties 
+of the electron track, the associated calorimeter clusters and their compatibility is built for each candidate. This 
+discriminant is used to define a series of cuts or "working points" (WP) based on electron reconstruction efficiency 
+in MC simulations. They are referred to as loose, medium and tight where tight provides the highest signal purity and 
+lowest background contamination. For photons the loose, medium and tight WPs are defined based on direct cuts on 
+individual variables rather than a combined discriminant in an otherwise similar procedure. These are intended to 
+separate prompt photons from hadronic backgrounds. \par
+
+In addition to identification requirements, all electrons and photons have two associated isolation variables which 
+allow individual analysis groups in ATLAS to apply cuts based on spatial isolation of electrons or photons in the 
+calorimeter and inner detector. Calorimeter isolation is defined as the sum of $E_T$ of topo-clusters around the 
+electron or photon cluster after subtracting an estimated contribution from pile-up. Similarly, the track isolation 
+is defined to be the sum of $p_T$ of tracks within a cone of the electron track or photon cluster direction. Separate 
+loose and tight electron and photon isolation WPs are derived based on these two variables in MC simulations in a 
+similar fashion to the isolation WPs. \par
+
+In order to ensure parity between identification and isolation efficiency WPs in data and MC simulation, the impact 
+of all WP selections are compared between the two. In particular, scale factors representing the ratio of data efficiency 
+to MC efficiency are derived in bins of photon/electron $E_T$ and $\eta$ for each WP. For electrons this is done by 
+selecting $Z \rightarrow e^+e^-$ and $J/\Psi \rightarrow e^+e^-$ events, resulting in scale factors deviating from unity 
+by less than 5-7\% for all bins across both identification and isolation WPs \cite{atlas-electrons-photons-eff}. 
+Corresponding uncertainties are generally less than 1\% for identification and up to 5\% for isolation. For photons, 
+scale factors and corresponding uncertainties are derived in $Z \rightarrow e^+e^-\gamma$ events and are similarly within 
+5\% of unity with uncertainties of up to 7\%. \par
 
 \subsection{Muons}
 
-\subsection{Hadronic Taus}
-
-\subsection{Quarks, Hadrons and Missing Energy}
+\subsection{Particle Jets and Missing Energy}
