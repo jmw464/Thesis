@@ -58,16 +58,36 @@ The LHC has been operational since 2008, when it recorded its first proton-proto
 of $7\ TeV$. Operation has been split into three distinct run periods denoted runs 1, 2 and 3 with shutdowns in between for 
 maintenance and accelerator as well as detector upgrades. Details on the timeline of these runs, alongside achieved energy 
 and luminosity is shown in table \ref{table-lhc-runs}. At present, run 1 is mostly relevant for historical reasons given the 
-much lower center of mass energy and integrated luminosity. This research focuses on data collected during runs 2 and 3. These 
-two run periods differ mainly by a slight increase in center of mass energy from $13$ TeV to $13.6$ TeV as well as an increase 
-in the mean number of interactions per crossing from $<\mu> = 34$ to $<\mu> = 55$ as recorded by ATLAS and pictured in figure 
-\ref{fig:Luminosity_vs_Pileup}. This difference results in a higher instantaneous luminosity for run 3, increasing total data 
-volume as well as complexity of each recorded collision event due to excess pile-up.
+much lower center of mass energy and integrated luminosity. This research focuses on data collected during runs 2 and 3. \par 
+
+The ATLAS detector records a large fraction of events delivered by the LHC and around 85-90\% of it is useable for physics 
+purposes for runs 2 and 3, as shown in figure \ref{fig:Data_Quality}. These two run periods differ mainly by a slight increase 
+in center of mass energy from $13$ TeV to $13.6$ TeV as well as an increase in the mean number of interactions per crossing from 
+$<\mu> = 34$ to $<\mu> = 55$ as recorded by ATLAS and pictured in figure \ref{fig:Luminosity_vs_Pileup}. This difference results 
+in a higher instantaneous luminosity for run 3, increasing total data volume as well as complexity of each recorded collision 
+event due to excess pile-up. \par
+
+%https://twiki.cern.ch/twiki/bin/view/AtlasPublic/DataQualityResults#Full_Run_2_period_2015_2018
+\begin{figure}
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \includegraphics[width=\textwidth]{images/Data_Quality_Run2.png}
+        \caption{}
+        \label{fig:Data_Quality_Run2}
+    \end{subfigure}%
+    \begin{subfigure}{.49\textwidth}
+        \includegraphics[width=\textwidth]{images/Data_Quality_Run3.png}
+        \caption{}
+        \label{fig:Data_Quality_Run3}
+    \end{subfigure}
+    \caption{Plots showing data quality in the ATLAS experiment for (a) run 2 and (b) run 3 up to end of 2024}
+    \label{fig:Data_Quality}
+\end{figure}
 
 %https://twiki.cern.ch/twiki/bin/view/AtlasPublic/LuminosityPublicResultsRun3
 \begin{figure}
 \centering
-    \includegraphics[width=0.6\textwidth]{images/Luminosity_vs_Pileup.png}
+    \includegraphics[width=0.49\textwidth]{images/Luminosity_vs_Pileup.png}
     \caption{Luminosity vs mean number of interactions for runs 1, 2 and 3 (up to September 17th 2025) as recorded by ATLAS.}
     \label{fig:Luminosity_vs_Pileup}
 \end{figure}
@@ -184,10 +204,12 @@ of loss of measurement information along the longitudinal direction of the straw
 As mentioned before, the combination of these three sub-systems is mainly responsible for precise measurements of 
 particle trajectories and momenta while minimally affecting their energies. This is accomplished by the presence of 
 nearly 100,000,000 finely segmented individual readout channels spread across pixels, strips and straws. Overall, the 
-inner detector achieves a momentum resolution of at least
+inner detector is designed to have a momentum resolution of at least
+
 \begin{equation}
 \sigma_{pT}/p_T = 0.05\% p_T \oplus 1\%
 \end{equation}
+
 where $\oplus$ denotes an addition in quadrature. Resolution generally worsens with increased particle momentum due to 
 the comparatively less pronounced curvature of high momentum tracks.
 
@@ -224,7 +246,7 @@ restricted to the endcaps only and use copper and tungsten as absorbers respecti
 $|\eta| < 4.9$. While hadrons lose part of their energy in the electromagnetic calorimeter, this is usually not enough 
 to stop them completely. Because of this, the tile calorimeter, which is made out of steel and plastic scintillator, 
 surrounds the LAr components in their entirety, providing a full hadronic calorimeter outside of the LAr endcaps. The 
-energy resolution differs between these individual components as
+energy resolution is designed for each component as
 
 \begin{equation} % EM calorimeter
 (\sigma_{E}/E)_{EM} = 10\% / \sqrt{E} \oplus 0.7\%
@@ -251,7 +273,7 @@ the ID and calorimeter system, the MS also consists of a barrell and two endcaps
 The barrel is split into three concentric stations made up of Monitored Drift Tubes (MDT) as well as Resistive Plate 
 Chambers (RPC) in the middle and outer station only. MDTs are tubes filled with a gas mixture which provide precision 
 momentum measurements by measuring ionizing radiation (similar to the ID). There are 380,000 MDTs in the MS overall 
-resulting in a momentum resolution of 
+with an expected energy resolution of 
 
 \begin{equation} % at pT = 1 TeV
 \sigma_{pT}/p_T = 10\%
@@ -352,22 +374,24 @@ to have originated from the primary interaction point (small IP) or from some la
 %https://indico.nbi.ku.dk/event/758/attachments/1684/2344/trackingnote.pdf
 \begin{figure}
 \centering
-    \includegraphics[width=0.8\textwidth]{images/Impact_Parameters.png}
+    \includegraphics[width=0.6\textwidth]{images/Impact_Parameters.png}
     \caption{Diagram visualizing track parameters used in ATLAS.}
     \label{fig:Impact_Parameters}
 \end{figure}
+
+\subsubsection*{Track Reconstruction}
 
 Tracking begins with a process called spacepoint formation, which clusters adjacent hits reaching some energy 
 threshold in each layer of the pixel and SCT detectors. These clusters are transformed into global coordinates 
 representing individual intersection points between particle trajectories and detector material. Spacepoints in 
 subsequent layers are then grouped into batches of 3 to create track seeds. This is preferentially done in the SCT 
 due to the lower density of spacepoints, but pixel seeds are also considered. Each seed is required to meet specific 
-quality criteria based on rough estimates of track paramters to minimize the presence of duplicate seeds for a given 
+quality criteria based on rough estimates of track parameters to minimize the presence of duplicate seeds for a given 
 track and reduce computational overhead. The remaining seeds are then extended in both directions via a track 
 finding algorithm based on the combinatorial Kalman filter (CKF) \cite{fruehwirt-kalman-filter}. This algorithm 
 repeatedly adds compatible clusters on adjacent layers to a track candidate and smoothes the estimated trajectory 
 taking into account detector resolution effects. In the case where multiple compatible spacepoints are found, 
-diverging track candidates are created and extended separately. Additionally, a prodedure called Bremsstrahlung 
+diverging track candidates are created and extended separately. Additionally, a procedure called Bremsstrahlung 
 recovery allows seeds that fail the track finding step entirely to be considered with a decreased quality threshold. 
 This procedure is triggered when a failed seed is matched to an interesting region in the calorimeter, which helps 
 recover performance for electron tracks radiating photons through Bremsstrahlung as they traverse the detector. \par
@@ -385,12 +409,23 @@ fit of a track does not worsen with the additional TRT hits. Aside from this for
 secondary back-tracking pass is done to increase reconstruction efficiency of particles produced further from the 
 beam. This procedure is mostly identical to forward tracking, but starts by searching for hit segments in the TRT 
 aligned with regions containing significant energy deposits in the calorimeter. Seeds are then created in layers 
-of the pixel and SCT detectors consistent with these TRT segments using two spacepoints only. While the overall 
-approach to tracking is very similar between the run 2 and run 3 reconstruction chain, various speed ups and other
-improvements were introduced to deal with the denser tracking environment from increased pile-up under run 3 
-conditions \cite{atlas-run3-tracking}. This includes changes to seed and track quality requirements at multiple 
-steps of the chain as well as earlier stopping for bad candidates, allowing for the retention of a fast, high 
-efficiency track reconstruction chain. \par 
+of the pixel and SCT detectors consistent with these TRT segments using two spacepoints only. \par 
+
+\subsubsection*{Track Selection}
+
+While the overall approach to tracking is very similar between the run 2 and run 3 reconstruction chain, various 
+speed ups and other improvements were introduced to deal with the denser tracking environment from increased pile-up 
+under run 3 conditions \cite{atlas-tracking-run3}. This includes changes to seed and track quality requirements at 
+multiple steps of the chain as well as earlier stopping for bad candidates. In order to balance efficiency of 
+reconstructing true charged particle tracks and minimize the presence of fake tracks, ATLAS provides two sets of 
+cuts called working points (WP). These are denoted \textit{loose} and \textit{tight primary}, where at $\eta = 0$, 
+the \textit{loose} selection results in a successful reconstruction of around 90\% of charged particle tracks with 
+around 1\% fake tracks \cite{atlas-tracking-run2, atlas-tracking-run3} [NOTE: Replace with run 3 tracking paper when
+available]. The \textit{tight primary} selection sacrifices some efficiency to provide a lower fake rate. Overall, 
+improvements in the reconstruction chain result in similar tracking performance across run 2 and run 3 despite the 
+increased presence of pile-up. \par
+
+\subsubsection*{Topo-clusters and PFlow}
 
 Separately, energy deposits in the calorimeter are grouped into so called topo-clusters using a dedicated clustering 
 algorithm \cite{atlas-calo-cluster} and then split to reflect the presence of multiple particle contributions where 
@@ -400,6 +435,8 @@ an algorithm called "Particle Flow" (PFlow) \cite{atlas-pflow}. PFlow is also us
 of a charged particle track to a topo-cluster allowing for the isolation of neutral contributions and treatment as 
 separate objects. This results in a unified description of neutral and charged particles measured in the detector 
 via a combination of information from tracks and topo-clusters. \par
+
+\subsubsection*{Primary Vertices}
 
 The presence of pile-up interactions leads to the reconstruction of excess tracks and calorimeter clusters that are not 
 relevant to the interaction of interest identified by the trigger system. To mitigate the impact of these additional 
@@ -413,21 +450,47 @@ Once this minimization converges, all tracks with a sufficient compatibility to 
 from the pool and the process is repeated. The run 3 version of the algorithm uses a Gaussian density function for 
 seeding and allows each track to be associated with multiple vertices in the fit via a calculated weight. After multiple 
 iterations of the fit, each track ends up primarily associated with a single vertex only. In both cases after fit 
-convergence the vertex with the largest $\Sigma p_T^2$ is marked as the primary vertex. The position of this primary 
-vertex can be used to remove tracks that likely originate from pile-up interactions based on their impact parameters. 
-\par
+convergence the vertex with the largest $\Sigma p_T^2$ is marked as the primary vertex. \par
+
+The final position of the primary vertex is used to recalculate track impact parameters, which allows for removal of 
+tracks likely coming from pile-up interactions. IPs also play a large role in identifying particles from secondary decays, 
+which is of great importance to $b$ and $c$ hadron identification (discussed in detail in the next chapter). IP resolution 
+is thus a centrally important quantity and is shown in figure \ref{IP_Resolution}. It is at the level of around 100 $\mu$m 
+for both $d_0$ and $z_0$ across most of the $\eta$ spectrum. Reconstructed tracks, calorimeter clusters and vertices are 
+the backbone of more high level object reconstruction which relates underlying detector signatures to physical particles, 
+such as photons, leptons and quarks. \par
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \includegraphics[width=\textwidth]{images/Impact_Parameter_Resolution_d0.png}
+        \caption{}
+        \label{fig:IP_Resolution_d0}
+    \end{subfigure}%
+    \begin{subfigure}{.49\textwidth}
+        \includegraphics[width=\textwidth]{images/Impact_Parameter_Resolution_z0.png}
+        \caption{}
+        \label{fig:IP_Resolution_z0}
+    \end{subfigure}
+    \caption{Plots showing (a) $d_0$ and (b) $z_0$ resolution as a function of $\eta$ for final tracks, track candidates 
+    and track seeds in run 3 reconstruction}
+    \label{fig:IP_Resolution}
+\end{figure}
 
 \subsection{Electrons and Photons}
 
 Electrons ($e^{\pm}$) and photons ($\gamma$) are some of the most easily identifiable fundamental particles 
 observable in the ATLAS detector due to their unique interaction signatures in the EM calorimeter. A dedicated 
 $e^{\pm}/\gamma$ reconstruction chain, which is built on top of track and calorimeter cluster reconstruction, exists to 
-find and isolate these signatures \cite{atlas-electrons-photons-reco}. This chain begins by considering topo-clusters 
-above a minimum energy threshold ($400\ MeV$ in run 2) and with more than 50\% of their energy deposited in the EM 
-calorimeter. Clusters that pass these criteria provide the basis of both electron and photon reconstruction, which 
-proceed somewhat independently. Electrons leave tracks in the ID while photons only do so if they undergo 
-$\gamma \rightarrow e^+e^-$ conversion before they enter the calorimeter. As such, different track to cluster matching 
-procedures exist to cover these three cases. \par
+find and isolate these signatures \cite{atlas-electrons-photons}.
+
+\subsubsection*{Reconstruction}
+
+This chain begins by considering topo-clusters above a minimum energy threshold ($400\ MeV$ in run 2) and with more than 
+50\% of their energy deposited in the EM calorimeter. Clusters that pass these criteria provide the basis of both electron 
+and photon reconstruction, which proceed somewhat independently. Electrons leave tracks in the ID while photons only do so 
+if they undergo $\gamma \rightarrow e^+e^-$ conversion before they enter the calorimeter. As such, different track to 
+cluster matching procedures exist to cover these three cases. \par
 
 Clusters matched to at least one standard particle track in the ID with $|\Delta\eta| < 0.05$ and 
 $-0.10 < q*(\phi_{track}-\phi_{cluster}) < 0.05$ are considered electron candidates. If multiple tracks fulfill these 
@@ -449,39 +512,45 @@ cluster. For converted photons, clusters where the best matched track belongs to
 seed cluster are also added. Once the superclusters are built, relevant variables related to energy and shower shape 
 are recomputed and the track and conversion vertex matching procedure is repeated. \par
 
+\subsubsection*{Selection, Isolation and Calibration}
+
 In order to improve the purity of reconstructed electron and photon objects, a selection procedure is applied to all 
 candidates. For electrons, this is intended to distinguish prompt electrons from hadronic objects, converted photons 
 and electrons originating from secondary decays. A likelihood discriminant based on variables describing the properties 
 of the electron track, the associated calorimeter clusters and their compatibility is built for each candidate. This 
-discriminant is used to define a series of cuts or "working points" (WP) based on electron reconstruction efficiency 
-in MC simulations. They are referred to as loose, medium and tight where tight provides the highest signal purity and 
-lowest background contamination. For photons the loose, medium and tight WPs are defined based on direct cuts on 
-individual variables rather than a combined discriminant in an otherwise similar procedure. These are intended to 
-separate prompt photons from hadronic backgrounds. \par
+discriminant is used to define a series of WPs based on electron reconstruction efficiency in MC simulations. They are 
+referred to as \textit{loose}, \textit{medium} and \textit{tight} with efficiencies of 93\%, 88\% and 80\% respectively 
+\cite{atlas-electrons-photons}. For photons the \textit{loose}, \textit{medium} and \textit{tight} WPs are defined 
+based on direct cuts on individual variables rather than a combined discriminant in an otherwise similar procedure. 
+These are intended to separate prompt photons from those originating in hadronic decays with overall similar 
+efficiencies to their electron counterparts \cite{atlas-photons}. \par
 
 In addition to selection requirements, all electrons and photons have two associated isolation variables which allow 
 individual analysis groups in ATLAS to apply cuts based on spatial isolation of electrons or photons in the calorimeter 
 and ID. Calorimeter isolation is defined as the sum of $E_T$ of topo-clusters around the electron or photon cluster 
 after subtracting an estimated contribution from pile-up. Similarly, the track isolation is defined to be the sum of 
-$p_T$ of tracks within a cone of the electron track or photon cluster direction. Separate loose and tight electron and 
-photon isolation WPs are derived based on these two variables in MC simulations in a similar fashion to the isolation 
-WPs. \par
+$p_T$ of tracks within a cone of the electron track or photon cluster direction. Separate \textit{loose} and 
+\textit{tight} electron and photon isolation WPs are derived based on these two variables in MC simulations in a similar 
+fashion to the isolation WPs. \par
 
 In order to ensure parity between selection and isolation efficiency WPs in data and MC simulation, the impact of all WP 
 based cuts are compared between the two. In particular, scale factors representing the ratio of data efficiency to MC 
 efficiency are derived in bins of photon/electron $E_T$ and $\eta$ for each WP. For electrons this is done by selecting 
 $Z \rightarrow e^+e^-$ and $J/\Psi \rightarrow e^+e^-$ events, resulting in scale factors deviating from unity by less 
-than 5-7\% for all bins across both selection and isolation WPs \cite{atlas-electrons-photons-eff}. Corresponding 
-uncertainties are generally less than 1\% for identification and up to 5\% for isolation. For photons, scale factors and 
-corresponding uncertainties are derived in $Z \rightarrow e^+e^-\gamma$ events and are similarly within 5\% of unity with 
-uncertainties of up to 7\%. \par
+than 5-7\% for all bins across both selection and isolation WPs \cite{atlas-electrons}. Corresponding uncertainties are 
+generally less than 1\% for identification and up to 5\% for isolation. For photons, scale factors and corresponding 
+uncertainties are derived in $Z \rightarrow e^+e^-\gamma$ events and are similarly within 5\% of unity with uncertainties 
+of up to 7\%. \par
 
 \subsection{Muons}
 
 Muons ($\mu^{\pm}$) are easily identifiable by their detector signatures for very different reasons than their lighter 
 $e^{\pm}$ counterparts. Due to their long lifetimes and much lower rates of energy loss via Bremsstrahlung they penetrate 
-far into the detector and commonly leave traces in all subsystems\footnote{Muons are essentially treated as minimum-ionizing 
-particles}. While tracks in the muon system are the most obvious sign for their presence, muon reconstruction takes 
+far into the detector and commonly leave traces in all subsystems. In essence, muons act as minimum-ionizing particles. \par
+
+\subsubsection*{Reconstruction}
+
+Tracks in the muon spectrometer are the most obvious sign for the presence of muons, but muon reconstruction takes 
 signatures across all parts of the detector into account. To this end there are five different algorithms focusing on 
 different subsystem combinations to identify five types of muons: combined (CB), inside-out combined (IO), muon-spectrometer 
 extrapolated (ME), calorimeter-tagged (CT) and segment-tagged (ST) \cite{atlas-muons}. In general, muon reconstruction starts 
@@ -505,13 +574,17 @@ for signatures consistent with minimum-ionizing particles. For these, track para
 For each reconstruction method a minimum muon $p_T$ cut of 2 GeV is applied, except for a raised threshold of 5 GeV for CT muons 
 given the larger amount of backgrounds that are otherwise vetoed by matched MS signatures. \par
 
+\subsubsection*{Selection, Isolation and Calibration}
+
 After all muon candidates are reconstructed, various selection criteria are applied based on the number of hits in ID subsystems 
 and MS sectors for each track, the compatibility of the track segments and overall fit properties. As with photons and electrons, 
-a set of loose, medium and tight selection WPs are defined based on these criteria. These WPs are identified based on their prompt 
-muon reconstruction efficiency and hadron misidentification rate, allowing individual analyses to balance the two as needed. There 
-are also separate WPs defined for high-$p_T$ and low-$p_T$ muon identification to cover more specific use cases. In order to 
-reject non-prompt muons originating from secondary decays of hadrons, a cut on the transverse and longitudinal impact parameters 
-is enforced as $|d_0|/\sigma(d_0) < 3$ and $|z_0|\text{sin}\theta < 0.5$ mm. \par
+a set of \textit{loose}, \textit{medium} and \textit{tight} selection WPs are defined based on these criteria. These WPs are 
+identified based on their prompt muon reconstruction efficiency and hadron misidentification rate, allowing individual analyses 
+to balance the two as needed. There are also separate WPs defined for high-$p_T$ and low-$p_T$ muon identification to cover more 
+specific use cases. In order to reject non-prompt muons originating from secondary decays of hadrons, a cut on the transverse and 
+longitudinal impact parameters is enforced as $|d_0|/\sigma(d_0) < 3$ and $|z_0|\text{sin}\theta < 0.5$ mm. Overall muon 
+reconstruction efficiencies are stable around 98\% for \textit{loose} WP and 92\% for \textit{tight} across most of the eta 
+spectrum (except for the central $|\eta| < 0.2$ region). Corresponding false identification rates are generally below 1\%. \par
 
 Further isolation of prompt muons is enforced via two isolation variables: track-based isolation and calorimeter-based isolation. 
 This serves mainly to further reduce the number of reconstructed muons originating from hadron decays and mirrors the approach 
@@ -519,13 +592,34 @@ taken for photons and electrons. In particular, track-based isolation is calcula
 cone of a particular size around a muon track. Calorimeter-based isolation is defined to be the sum of $E_T$ deposited in the 
 calorimeter within a cone of the extrapolated muon track while removing the expected muon contribution. A series of isolation WPs 
 are defined based on either track-isolation only or a combination of both variables, using different cone sizes and cuts to 
-optimize prompt muon retention and non-prompt muon rejection. \par
+optimize prompt muon retention and non-prompt muon rejection in a similar fashion to photons and electrons. \par
 
 Finally, a calibration procedure is applied to understand the differences in muon reconstruction efficiency across data and MC 
 simulations using $Z \rightarrow \mu^+\mu^-$ and $J/\Psi \rightarrow \mu^+\mu^-$ events. SFs are derived for all selection WPs 
-in bins of $(\eta, \phi)$ and in $(p_T, \eta)$ for isolation WPs. They are generally close to unity with uncertainties of up to 
-a few percent depending on the WP and bin. \par
+in bins of $(\eta, \phi)$ and in $(p_T, \eta)$ for isolation WPs. They are generally within 1\% of unity and have associated 
+uncertainties of up to a few percent. \par
 
 \subsection{Particle Jets}
+
+As highlighted in the previous two sections, photons, electrons and muons have specific associated reconstruction procedures 
+that take advantage of the unique signatures they leave in the ATLAS detector. Most other particles passing through the 
+detector do not share this characteristic. Different hadron types, which are predominantly mesons such as pions and 
+kaons since they are stable enough to travel macroscopic distances in the detector, are very difficult to distinguish from 
+each other. Discounting pile-up interactions and secondary decays, these are created by the hadronization of quarks 
+involved in the primary collision, making them central to the underlying physical structure of a particular event. In 
+practice, particles originating from the hadronization of a single quark travel outward from the primary vertex in a conical 
+shape called a particle jet. These jets have different characteristics depending on the flavor of the originating quark, 
+which makes them central to many physics analysis objectives. Identification of quark flavor based on jet characteristics 
+(also called flavor tagging) is a main focus of this thesis and will be explained in detail in the next chapter. Before 
+identification a general reconstruction algorithm is applied to identify all jets in a particular collision event.
+
+\subsubsection*{Reconstruction}
+
+Given the messiness of hadronization and QCD in general, defining the extent of a particle jet signature is not as 
+straightforward as defining the boundaries of measurements for individual particles such as electrons or muons. The 
+definition of a jet is in general dependent on the algorithm used to reconstruct it. For a variety of reasons, ATLAS uses an 
+algorithm called anti-$k_T$ \cite{cacciari-antikt}.
+
+
 
 \subsection{Hadronic Taus and Missing Energy}
